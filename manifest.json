@@ -2,7 +2,9 @@
   "name": "Haven",
   "version": "1.0",
   "description": "Haven is a chrome extension which displays bookmarks on home of your chrome browser!",
-  "permissions": [],
+  "permissions": [
+    "bookmarks"
+  ],
   "background": {
     "scripts": [
       "background.js"

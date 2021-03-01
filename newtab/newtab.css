@@ -4,12 +4,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body{
     background-repeat: no-repeat;
     background-size: cover;
-    background-blend-mode: darken;
+    transition: margin-left 0.3s;
 }
 
 /* body::before{
@@ -29,7 +30,9 @@ body{
     font-size: 100px;
     font-family: 'Poppins', sans-serif;
     color: white;
-    background-color: rgba(0, 0, 0, 0.4);
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    font-weight: bold;
+    letter-spacing: 5px;
     padding: 0 36px;
     border-radius: 12px;
     /* Unselectable */
@@ -65,4 +68,54 @@ header{
 
 #settings-cog:hover{
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+#bookmark-bar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: black;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    overflow-x: hidden;
+}
+
+#close-bookmark-bar{
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.bookmark-search{
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 16px;
+    margin-right: 12px;
+    width: 100%;
+}
+
+.bookmark-search > input{
+    background: none;
+    border: none;
+    width: 100%;
+    outline: none;
+    color: white;
+    padding: 0 8px;
+}
+
+.bookmark-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+}
+
+.bookmark-folder{
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 12px 12px 12px;
+    padding: 12px;
 }

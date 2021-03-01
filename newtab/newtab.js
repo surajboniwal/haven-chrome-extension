@@ -3,6 +3,35 @@ setBackgroud(background);
 setTime();
 setInterval(setTime, 1000);
 
+chrome.bookmarks.getTree((tree) => {
+    console.log(tree[0].children)
+    // tree[0].children[0].children.forEach(bookmark => {
+    //     var bookmarkElement = document.createElement("div")
+    //     bookmarkElement.id = "bookmark"
+    //     bookmarkElement.innerText = bookmark.title
+    //     console.log(bookmarkElement)
+    //     document.querySelector("#bookmarks").appendChild(bookmarkElement)
+
+    tree[0].children.forEach(folder => {
+        var folderElement = document.createElement("div")
+        folderElement.classList.add("bookmark-folder");
+        folderElement.innerText = folder.title;
+        console.log(folderElement)
+        document.querySelector("#bookmark-bar").appendChild(folderElement)
+    });
+
+});
+
+document.querySelector(".open-bookmark-bar").addEventListener("click", (e) => {
+    document.getElementById("bookmark-bar").style.width = "300px";
+    document.getElementById("body").style.marginLeft = "300px";
+});
+
+document.querySelector('#close-bookmark-bar').addEventListener("click", (e) => {
+    document.getElementById("bookmark-bar").style.width = "0px";
+    document.getElementById("body").style.marginLeft = "0px";
+});
+
 async function setBackgroud(background) {
     if (background == null) {
         var bg = {};
