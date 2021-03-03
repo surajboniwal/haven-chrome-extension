@@ -16,20 +16,19 @@ chrome.bookmarks.getTree((tree) => {
         var folderElement = document.createElement("div")
         folderElement.classList.add("bookmark-folder");
         folderElement.innerText = folder.title;
-        console.log(folderElement)
         document.querySelector("#bookmark-bar").appendChild(folderElement)
     });
 
 });
 
-document.querySelector(".open-bookmark-bar").addEventListener("click", (e) => {
+document.querySelector("#open-bookmark-bar").addEventListener("click", (e) => {
     document.getElementById("bookmark-bar").style.width = "300px";
-    document.getElementById("body").style.marginLeft = "300px";
+    document.getElementById("open-bookmark-bar").style.display = "none";
 });
 
 document.querySelector('#close-bookmark-bar').addEventListener("click", (e) => {
     document.getElementById("bookmark-bar").style.width = "0px";
-    document.getElementById("body").style.marginLeft = "0px";
+    document.getElementById("open-bookmark-bar").style.display = "flex";
 });
 
 async function setBackgroud(background) {
