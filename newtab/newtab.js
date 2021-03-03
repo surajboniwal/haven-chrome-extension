@@ -4,30 +4,49 @@ setTime();
 setInterval(setTime, 1000);
 
 chrome.bookmarks.getTree((tree) => {
-    console.log(tree[0].children)
-    // tree[0].children[0].children.forEach(bookmark => {
-    //     var bookmarkElement = document.createElement("div")
-    //     bookmarkElement.id = "bookmark"
-    //     bookmarkElement.innerText = bookmark.title
-    //     console.log(bookmarkElement)
-    //     document.querySelector("#bookmarks").appendChild(bookmarkElement)
+    var bookmarkBody = document.querySelector("#bookmark-body");
 
-    tree[0].children.forEach(folder => {
-        var folderElement = document.createElement("div")
-        folderElement.classList.add("bookmark-folder");
-        folderElement.innerText = folder.title;
-        document.querySelector("#bookmark-bar").appendChild(folderElement)
-    });
+    setBookmarks(tree[0].children);
+
+    function setBookmarks(list) {
+        list.forEach(element => {
+            console.log(element)
+            var node = document.createElement("div")
+            if ('children' in element) {
+                node.classList.add("bookmark-folder");
+                node.classList.add("bookmark");
+                node.innerText = element.title;
+                bookmarkBody.appendChild(node)
+
+                node.addEventListener("click", (e) => {
+                    bookmarkBody.innerHTML = '';
+                    return setBookmarks(element.children);
+                });
+            } else {
+                node.classList.add("bookmark-element");
+                node.classList.add("bookmark");
+                var faviconElement = document.createElement("img")
+                faviconElement.classList.add("bookmark-img")
+                faviconElement.src = "https://s2.googleusercontent.com/s2/favicons?domain_url=" + element.url;
+                node.appendChild(faviconElement);
+                var bookmarkElementTitle = document.createElement("p");
+                bookmarkElementTitle.classList.add("bookmark-element-title");
+                bookmarkElementTitle.innerText = element.title;
+                node.appendChild(bookmarkElementTitle);
+                bookmarkBody.appendChild(node);
+            }
+        });
+    }
 
 });
 
 document.querySelector("#open-bookmark-bar").addEventListener("click", (e) => {
-    document.getElementById("bookmark-bar").style.width = "300px";
+    document.getElementById("bookmark-bar").style.left = "0px";
     document.getElementById("open-bookmark-bar").style.display = "none";
 });
 
 document.querySelector('#close-bookmark-bar').addEventListener("click", (e) => {
-    document.getElementById("bookmark-bar").style.width = "0px";
+    document.getElementById("bookmark-bar").style.left = "-400px";
     document.getElementById("open-bookmark-bar").style.display = "flex";
 });
 

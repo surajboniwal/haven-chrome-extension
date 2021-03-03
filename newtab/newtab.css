@@ -72,13 +72,14 @@ header{
 
 #bookmark-bar{
     position: fixed;
-    left: 0;
+    left: -400px;
     top: 0;
     height: 100%;
-    width: 0;
+    width: 400px;
     background-color: white;
-    transition-duration: 0.3s;
+    transition: left 0.3s;
     overflow: hidden;
+    z-index: 1;
     overflow-x: hidden;
 }
 
@@ -107,11 +108,10 @@ header{
 
 .bookmark-search{
     padding: 8px;
-    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0 12px 12px 12px;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     font-size: 16px;
-    margin-right: 12px;
-    width: 100%;
 }
 
 .bookmark-search > input{
@@ -127,18 +127,23 @@ header{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 12px;
+    font-size: 24px;
 }
 
-.bookmark-folder{
-    position: relative;
+.bookmark{
     color: black;
-    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-color: rgba(0, 0, 0, 0.04);
     cursor: pointer;
     margin: 0 12px 12px 12px;
     padding: 12px;
     border-radius: 4px;
     transition: background-color 0.2s;
+}
+
+.bookmark-folder{
+    position: relative;
 }
 
 .bookmark-folder::after{
@@ -150,11 +155,16 @@ header{
     transform: translate(0, -50%);
 }
 
-.bookmark-folder:hover{
-    background-color: rgba(0, 0, 0, 0.2);
+.bookmark:hover{
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
-.bookmark-title{
-    font-size: 24px;
-    margin: 12px 0 0 12px;
+.bookmark-element{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.bookmark-element > img {
+    margin-right: 12px;
 }
